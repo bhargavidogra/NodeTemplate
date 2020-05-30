@@ -13,15 +13,16 @@ NodeJS Assignment - 1
 
 
 
+      
       Book Schema: -
-         id: guid,
-         title: string,
-         price: integer,
-         page_count: integer,
-         image_url: string,
-         description: string
-         author: guid,
-         comments: array of strings
+           id: guid,
+           title: string,
+           price: integer,
+           page_count: integer,
+           image_url: string,
+           description: string
+           author: guid,
+           comments: array of strings
 
 
 
