@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title><%= title %></title>
@@ -8,4 +8,140 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
   </body>
-</html>
+</html> -->
+
+
+
+<html>
+   <head>
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href ="css/styles.css">
+</head>
+<body>
+<header class="navbar navbar-bright navbar-fixed-top" role="banner">
+   <div class="container">
+     <div class="navbar-header">
+       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+         <span class="sr-only">Toggle navigation</span>
+         <span class="icon-bar">hi </span>
+         <span class="icon-bar">bye</span>
+         <span class="icon-bar">why</span>
+       </button>
+       <a href="/" class="navbar-brand">Home Page</a>
+     </div>
+     
+   </div>
+ </header>
+ 
+ <div id="masthead">  
+   <div class="container">
+     <div class="row">
+       <div class="col-md-7">
+         <h1>Welcome to  <%=title%>
+           <p class="lead"></p>
+         </h1>
+       </div>
+       <div class="col-md-5">
+         <div class="well well-lg"> 
+          
+            <div style="display: flex; justify-content:center">
+          <a class="story-title" href="#"><img alt="" src="https://i.ya-webdesign.com/images/p-transparent-symbol-logo-13.png" style="width:100px;height:100px" class="img-circle"></a> 
+            <h2 style="color: black;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">𝓳𝓾𝓼𝓽 𝓹𝓸𝓼𝓽 𝔂𝓸𝓾𝓻 𝓽𝓱𝓸𝓾𝓰𝓱𝓽𝓼 𝓸𝓾𝓽!!!</h2>
+          </div>
+         </div>
+       </div>
+     </div> 
+   </div><!-- /cont -->
+   
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="top-spacer"> </div>
+       </div>
+     </div> 
+   </div><!-- /cont -->
+   
+ </div>
+ 
+ 
+ <div class="container">
+   <div class="row">
+     
+     <div class="col-md-12"> 
+       
+       <div class="panel">
+         <div class="panel-body">
+           
+           
+           
+           <!--/stories-->
+           <div class="row" style="display: flex; justify-content:center;">    
+             <br>
+             <div class="col-md-4 col-sm-4 text-center" style="border:5px solid #efefef;border-radius: 10px;background-color: #efefef;">
+             Sign Up!
+             <form name="signUpForm" action="/users/auth/login" method="post">
+              UserName: <input name="username" id="userName"/><br/><br/>
+              Email:    <input name="username" id="email"/><br/><br/>
+              Password: <input name="password" id="password"/><br/>
+                <input type="submit" value="Sign up"/>
+             </form>
+             Have an account?<a href='/users/auth/register'><i>Sign In</i></a>
+             </div>
+           </div>
+           <hr>
+           
+
+          
+           
+         </div>
+       </div>
+                                                                                        
+                                                    
+                                                       
+       </div><!--/col-12-->
+   </div>
+ </div>
+                                                 
+                                                                                 
+ <hr>
+ 
+ <div class="container" id="footer">
+   <div class="row">
+     <div class="col col-sm-12">
+       
+       <h1>Follow Us</h1>
+       <div class="btn-group">
+        <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
+       <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
+       <a class="btn btn-google-plus btn-lg" href="#"><i class="icon-google-plus icon-large"></i> Google+</a>
+       </div>
+       
+     </div>
+   </div>
+ </div>
+ 
+ <hr>
+ 
+ <hr>
+ 
+ <footer>
+   <div class="container">
+     <div class="row">
+       <div class="col-sm-6">
+         <ul class="list-inline">
+           <li><i class="icon-facebook icon-2x"></i></li>
+           <li><i class="icon-twitter icon-2x"></i></li>
+           <li><i class="icon-google-plus icon-2x"></i></li>
+           <li><i class="icon-pinterest icon-2x"></i></li>
+         </ul>
+         
+       </div>
+       <div class="col-sm-6">
+           <p class="pull-right">Built with <i class="icon-heart-empty"></i> at <a href="http://www.bootply.com">Bootply</a></p>      
+       </div>
+     </div>
+   </div>
+ </footer>
+</body>
+ </html>

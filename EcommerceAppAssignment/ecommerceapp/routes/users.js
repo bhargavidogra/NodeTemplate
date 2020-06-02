@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const logger = require('pino')();
+let middleware = require('../helper/middleware');
+
 
 var { addnewUser,
   getUsers,
@@ -15,15 +18,16 @@ router.get('/', function(req, res, next) {
   
 
   //  middleware
-   console.log(`Request from: ${req.originalUrl}`)
-   console.log(`Request type: ${req.method}`)
+  logger.info(`Request from: ${req.originalUrl}`)
+  logger.info(`Request type: ${req.method}`)
   //  res.send('respond with a resource');
    next();
 },loginRequired, getUsers);
 
 // // Post endpoint
 router.post('/auth/register',addnewUser);
-router.post('/auth/login',login);
+router.post('/auth/login'
+,login);
 
 
 //     // get a specific contact
