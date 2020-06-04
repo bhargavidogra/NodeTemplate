@@ -1,10 +1,28 @@
 var mongoose = require('mongoose');
 var { BookSchema } = require('../models/book');
+const Joi = require('@hapi/joi');
 
 const Book = mongoose.model('Book', BookSchema);
 
  const addnewBook = (req, res) => {
     let newBook = new Book(req.body);
+
+    //JOI Validation
+    const schema = Joi.object({
+        title:Joi.string().min(3).required(),
+        price:Joi.number().required(),
+        page_count:Joi.number().required(),
+        image_url:Joi.string().required(),
+        description:Joi.string().required(),
+        author:Joi.string().required(),
+        comment:Joi.required()
+        });
+    
+        let result = schema.validate(req.body);
+          if(result.error){
+              res.status(400).send(result.error.details[0].message);
+          }
+
 
     newBook.save((err, book) => {
         if (err) {

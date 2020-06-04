@@ -23,7 +23,7 @@ const BookSchema = new Schema({
         type: String
     },
     comment :{
-        type :String
+        type : [String]
     }
 },{ id: false });
 

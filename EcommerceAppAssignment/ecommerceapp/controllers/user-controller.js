@@ -2,19 +2,37 @@ var mongoose = require('mongoose');
 var { UserSchema } = require('../models/user');
  var bcrypt = require('bcrypt');
  var jwt = require('jsonwebtoken');
+ const Joi = require('@hapi/joi');
 const User = mongoose.model('User', UserSchema);
+const {TokenSchema} = require('../models/token');
+const token = mongoose.model('token', TokenSchema);
 
  const addnewUser = (req, res) => {
     let newUser = new User(req.body);
+    //JOI Validation
+    const schema = Joi.object({
+    userName:Joi.string().min(3).required(),
+    email:Joi.string().min(4).required().email(),
+    password:Joi.string().min(6).required()
+    });
+
+    let result = schema.validate(req.body);
+      if(result.error){
+          res.status(400).send(result.error.details[0].message);
+      }
+
     newUser.hashPassword = bcrypt.hashSync(req.body.password,10);
     newUser.save((err, user) => {
         if (err) {
+            
             res.send(err);
         }else{
             user.hashPassword = undefined;
         res.json(user);
         }
-    });
+    }
+    
+    );
 }
 
 const login = (req,res)=>{
@@ -29,11 +47,27 @@ const login = (req,res)=>{
             res.status(401).json({message :"Authentication Failed ! Wrong password "});  
            }
            else{
-               return res.json({token : jwt.sign({email: user.email, 
-                username : user.username,_id:user.id},'RESTFULAPIs')});
+               const accessToken = generateAccessToken(user);
+
+               const refreshToken = jwt.sign({email: user.email, 
+                username : user.username,_id:user.id},'RESTFULAPIs');
+                let tokengen = new token({token:refreshToken});
+                tokengen.save();
+
+               return res.json({accessToken: accessToken,refreshToken :refreshToken});
        }
     }
    })}; 
+
+
+function generateAccessToken(user)
+{
+    return  jwt.sign({email: user.email, 
+        username : user.username,_id:user.id},'RESTFULAPIs',{expiresIn :'5s'});
+}
+
+
+
 
 const loginRequired = (req,res,next)=>{
     if(req.user){

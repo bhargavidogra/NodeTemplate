@@ -1,10 +1,25 @@
 var mongoose = require('mongoose');
 var { AuthorSchema } = require('../models/author');
+const Joi = require('@hapi/joi');
+
+
 
 const author = mongoose.model('author', AuthorSchema);
 
  const addnewauthor = (req, res) => {
     let newauthor = new author(req.body);
+
+ //JOI Validation
+ const schema = Joi.object({
+    name:Joi.string().min(3).required(),
+    image_url:Joi.string().required(),
+    description:Joi.string().required(),
+    });
+
+    let result = schema.validate(req.body);
+      if(result.error){
+          res.status(400).send(result.error.details[0].message);
+      }
 
     newauthor.save((err, author) => {
         if (err) {
